@@ -50,7 +50,21 @@ class ShoppingCart:
         else:
             user_balance -= total_price
             return user_balance
+        
+    def remove_from_cart(self, product_id):
+        """刪除購物車內的商品"""
+        item_to_remove = None
+        for item in self.shopping_cart:
+            if item['id'] == product_id:
+                item_to_remove = item
+                break
 
+        if item_to_remove:
+            self.shopping_cart.remove(item_to_remove)
+            print(f"\n{item_to_remove['name']} 已從購物車中移除。")
+        else:
+            print("\n商品編號不在購物車內，無法刪除。")
+            
 if __name__ == '__main__':
     cart = ShoppingCart()
 
