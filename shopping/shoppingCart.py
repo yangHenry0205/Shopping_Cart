@@ -44,27 +44,12 @@ class ShoppingCart:
                 self.shopping_cart.clear()
                 print(f"\n付款成功！剩餘餘額: ${self.user_balance}")
 
-    def check_balance(self, user_balance, total_price):
-        if total_price > user_balance:
-            return("餘額不足")
-        else:
-            user_balance -= total_price
-            return user_balance
-        
-    def remove_from_cart(self, product_id):
-        """刪除購物車內的商品"""
-        item_to_remove = None
-        for item in self.shopping_cart:
-            if item['id'] == product_id:
-                item_to_remove = item
-                break
+    # def checkBalance(self):
+    #     if self.user_balance > 0:
+    #         print(f"\n剩餘餘額: ${self.user_balance}")
+    #     else:
+    #         print("\n餘額不足")
 
-        if item_to_remove:
-            self.shopping_cart.remove(item_to_remove)
-            print(f"\n{item_to_remove['name']} 已從購物車中移除。")
-        else:
-            print("\n商品編號不在購物車內，無法刪除。")
-            
 if __name__ == '__main__':
     cart = ShoppingCart()
 
@@ -74,9 +59,9 @@ if __name__ == '__main__':
       print("2. 顯示購物車內容")
       print("3. 付款")
       print("4. 離開")
-      print("5. 查看餘額")
+    #   print("5. 查看餘額")
 
-      choice = input("\n請輸入選項 (1/2/3/4/5): ")
+      choice = input("\n請輸入選項 (1/2/3/4): ")
 
       if choice == "1":
           product_id = int(input("\n請輸入要加入購物車的商品編號: "))
@@ -92,8 +77,8 @@ if __name__ == '__main__':
           print("\n謝謝光臨，再見！")
           break
 
-      elif choice == "5":
-          cart.checkBalance()
+    #   elif choice == "5":
+    #       cart.checkBalance()
 
       else:
           print("\n無效的選項，請重新輸入。")
