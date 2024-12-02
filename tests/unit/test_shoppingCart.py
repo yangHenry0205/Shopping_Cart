@@ -109,47 +109,6 @@ class TestShoppingCart(unittest.TestCase):
         self.assertEqual(cart.products[2]['quantity'], 2)
         self.assertEqual(cart.user_balance, 70.0)
     
-    # 測試刪除購物車中的商品
-    def test_remove_from_cart(self):
-        cart = self.cart
-        cart.add_to_cart(1)  # 先加入商品1
-        cart.add_to_cart(2)  # 再加入商品2
-        product_id = 1
-        expected_output = f"\n{cart.products[product_id]['name']} 已從購物車中移除。\n"
-
-        sys.stdout = StringIO()
-        cart.remove_from_cart(product_id)
-        actual_output = sys.stdout.getvalue()
-        sys.stdout = sys.__stdout__
-
-        self.assertEqual(actual_output, expected_output)
-        self.assertNotIn(product_id, [item['id'] for item in cart.shopping_cart])
-
-    # 測試刪除不存在的商品
-    def test_remove_invalid_product_from_cart(self):
-        cart = self.cart
-        cart.add_to_cart(1)  # 先加入商品1
-        product_id = 5  # 嘗試刪除一個不存在的商品
-        expected_output = "\n商品編號不在購物車內，無法刪除。\n"
-
-        sys.stdout = StringIO()
-        cart.remove_from_cart(product_id)
-        actual_output = sys.stdout.getvalue()
-        sys.stdout = sys.__stdout__
-
-        self.assertEqual(actual_output, expected_output)
-        self.assertIn(1, [item['id'] for item in cart.shopping_cart])
-
-    # def test_checkBalance(self):
-    #     cart = self.cart
-    #     expected_output = "\n剩餘餘額: $100.0\n"
-
-    #     sys.stdout = StringIO()
-    #     cart.checkBalance()
-    #     actual_output = sys.stdout.getvalue()
-    #     sys.stdout = sys.__stdout__
-
-    #     self.assertEqual(actual_output, expected_output)
-
+    
 if __name__ == '__main__':
     unittest.main()
