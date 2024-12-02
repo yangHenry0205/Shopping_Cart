@@ -74,8 +74,9 @@ if __name__ == '__main__':
       print("2. 顯示購物車內容")
       print("3. 付款")
       print("4. 離開")
+      print("5. 查看餘額")
 
-      choice = input("\n請輸入選項 (1/2/3/4): ")
+      choice = input("\n請輸入選項 (1/2/3/4/5): ")
 
       if choice == "1":
           product_id = int(input("\n請輸入要加入購物車的商品編號: "))
@@ -90,6 +91,9 @@ if __name__ == '__main__':
       elif choice == "4":
           print("\n謝謝光臨，再見！")
           break
+
+      elif choice == "5":
+          cart.checkBalance()
 
       else:
           print("\n無效的選項，請重新輸入。")
