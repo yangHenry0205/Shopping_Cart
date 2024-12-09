@@ -37,6 +37,34 @@ class TestShoppingCart(unittest.TestCase):
         self.assertEqual(actual_output, expected_output)
         self.assertNotIn(product_id, [item['id'] for item in cart.shopping_cart])
 
+    def test_delete_from_cart(self):
+        cart = self.cart
+        product_id = 1
+        expected_output = f"\n{self.products[product_id]['name']} 已從購物車移除。\n"
+
+        # 重新導向stdout以捕獲print的輸出
+        sys.stdout = StringIO()
+        cart.delete_from_cart(product_id)
+        actual_output = sys.stdout.getvalue()
+        sys.stdout = sys.__stdout__  # 重置stdout
+
+        self.assertEqual(actual_output, expected_output)
+        self.assertEqual(cart.products[product_id]['name'], cart.shopping_cart[0]['name'])
+
+    # 測試在輸入無效的商品編號的情境
+    def test_delete_invalid_product_from_cart(self):
+        cart = self.cart
+        product_id = 5
+        expected_output = "\n產品不存在於購物車內。\n"
+
+        sys.stdout = StringIO()
+        cart.delete_from_cart(product_id)
+        actual_output = sys.stdout.getvalue()
+        sys.stdout = sys.__stdout__
+
+        self.assertEqual(actual_output, expected_output)
+        self.assertNotIn(product_id, [item['id'] for item in cart.shopping_cart])
+
     # 測試當購物車為空時，查看購物車的輸出結果是否如同預期
     def test_view_cart_empty(self):
         cart = self.cart
