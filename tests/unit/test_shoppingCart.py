@@ -51,8 +51,7 @@ class TestShoppingCart(unittest.TestCase):
         sys.stdout = sys.__stdout__  # 重置stdout
 
         self.assertEqual(actual_output, expected_output)
-        self.assertEqual(cart.products[product_id]['name'], cart.shopping_cart[0]['name'])
-
+        self.assertNotIn(product_id, [item['id'] for item in cart.shopping_cart])
     # 測試在輸入無效的商品編號的情境
     def test_delete_invalid_product_from_cart(self):
         cart = self.cart
