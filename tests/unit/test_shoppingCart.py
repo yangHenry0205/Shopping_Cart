@@ -40,7 +40,7 @@ class TestShoppingCart(unittest.TestCase):
     def test_delete_from_cart(self):
         cart = self.cart
         product_id = 1
-        expected_output = f"\n{cart.products[product_id]['name']} 已從購物車移除。\n"
+        expected_output = f"\n{cart.products[product_id]['name']} 已加入購物車。\n\n{cart.products[product_id]['name']} 已從購物車移除。\n"
 
         # 重新導向stdout以捕獲print的輸出
         sys.stdout = StringIO()
