@@ -44,6 +44,7 @@ class TestShoppingCart(unittest.TestCase):
 
         # 重新導向stdout以捕獲print的輸出
         sys.stdout = StringIO()
+        cart.add_to_cart(product_id)
         cart.delete_from_cart(product_id)
         actual_output = sys.stdout.getvalue()
         sys.stdout = sys.__stdout__  # 重置stdout
